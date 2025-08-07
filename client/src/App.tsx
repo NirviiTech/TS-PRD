@@ -1,9 +1,17 @@
-import React from 'react'
+// src/App.tsx
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import AppRoutes from './routes';
 
-const App = () => {
+function App() {
   return (
-    <div className='text-3xl font-bold underline'>App</div>
-  )
+    <Router>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
+    </Router>
+  );
 }
 
-export default App
+export default App;
