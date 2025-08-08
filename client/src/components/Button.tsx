@@ -1,23 +1,50 @@
-import React from 'react';
+import React from "react";
+import clsx from "clsx";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string;
-  variant?: 'primary' | 'secondary' | 'danger';
-}
-
-const Button: React.FC<ButtonProps> = ({ label, variant = 'primary', ...rest }) => {
-  const baseStyle = 'px-4 py-2 rounded font-semibold transition-colors';
-  const variants = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700',
-    secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
-    danger: 'bg-red-600 text-white hover:bg-red-700',
-  };
-
-  return (
-    <button className={`${baseStyle} ${variants[variant]}`} {...rest}>
-      {label}
-    </button>
-  );
+type ButtonProps = {
+  children: React.ReactNode;
+  onClick?: () => void;
+  type?: "button" | "submit" | "reset";
+  variant?: "primary" | "secondary" | "danger" | "ghost";
+  disabled?: boolean;
+  className?: string;
 };
 
-export default Button;
+const baseStyles =
+  "px-4 py-2 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200";
+
+const variants: Record<string, string> = {
+  primary:
+    "bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500 shadow-sm",
+  secondary:
+    "bg-gray-100 text-gray-800 hover:bg-gray-200 focus:ring-gray-400 shadow-sm",
+  danger:
+    "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 shadow-sm",
+  ghost:
+    "bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-300",
+};
+
+export default function Button({
+  children,
+  onClick,
+  type = "button",
+  variant = "primary",
+  disabled = false,
+  className = "",
+}: ButtonProps) {
+  return (
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={clsx(
+        baseStyles,
+        variants[variant],
+        disabled && "opacity-50 cursor-not-allowed",
+        className
+      )}
+    >
+      {children}
+    </button>
+  );
+}

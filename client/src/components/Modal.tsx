@@ -1,28 +1,50 @@
-import React from 'react';
+import React from "react";
+import { X } from "lucide-react";
 
-interface ModalProps {
+type ModalProps = {
   isOpen: boolean;
-  title: string;
   onClose: () => void;
+  title?: string;
   children: React.ReactNode;
-}
+  size?: "sm" | "md" | "lg";
+};
 
-const Modal: React.FC<ModalProps> = ({ isOpen, title, onClose, children }) => {
+export default function Modal({
+  isOpen,
+  onClose,
+  title,
+  children,
+  size = "md",
+}: ModalProps) {
   if (!isOpen) return null;
 
+  const sizes = {
+    sm: "max-w-sm",
+    md: "max-w-lg",
+    lg: "max-w-2xl",
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg w-full max-w-md p-6 shadow-lg">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold">{title}</h3>
-          <button onClick={onClose} className="text-gray-600 hover:text-black text-xl font-bold">
-            &times;
-          </button>
-        </div>
-        <div>{children}</div>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div
+        className={`bg-white rounded-xl shadow-xl w-full ${sizes[size]} p-6 relative`}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+          aria-label="Close modal"
+        >
+          <X className="w-5 h-5" />
+        </button>
+        {title && (
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">{title}</h2>
+        )}
+        {children}
       </div>
     </div>
   );
-};
-
-export default Modal;
+}
