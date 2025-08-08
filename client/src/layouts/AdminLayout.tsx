@@ -8,7 +8,7 @@ export default function AccountantLayout() {
 
   const navItems = [
     { to: "/dashboard/accountant", label: "Dashboard" },
-    { to: "/invoices/generate", label: "Generate Invoices" },
+    { to: "/dashboard/accountant/invoices/generate", label: "Generate Invoices" },
   ];
 
   return (

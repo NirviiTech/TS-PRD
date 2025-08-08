@@ -25,7 +25,7 @@ export default function AppRoutes() {
         <Route path="/auth/oauth" element={<OAuth />} />
         <Route path="/auth/forgot-password" element={<ForgotPassword />} />
 
-        <Route path="/dashboard/admin" element={<AdminLayout />}>
+        <Route path="/dashboard/admin" element={<AccountantLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="clients" element={<ClientList />} />
           <Route path="clients/new" element={<ClientForm />} />
@@ -37,7 +37,7 @@ export default function AppRoutes() {
           <Route path="reports/profitability" element={<Profitability />} />
         </Route>
 
-        <Route path="/dashboard/accountant" element={<AccountantLayout />}>
+        <Route path="/dashboard/accountant" element={<AdminLayout />}>
           <Route index element={<AccountantDashboard />} />
           <Route path="invoices/generate" element={<InvoiceGenerate />} />
         </Route>

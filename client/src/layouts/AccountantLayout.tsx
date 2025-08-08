@@ -8,10 +8,10 @@ export default function AdminLayout() {
 
   const navItems = [
     { to: "/dashboard/admin", label: "Dashboard" },
-    { to: "/clients", label: "Clients" },
-    { to: "/employees", label: "Employees" },
-    { to: "/projects/create", label: "Projects" },
-    { to: "/allocations", label: "Allocations" },
+    { to: "/dashboard/admin/clients", label: "Clients" },
+    { to: "/dashboard/admin/employees", label: "Employees" },
+    { to: "/dashboard/admin/projects/create", label: "Projects" },
+    { to: "/dashboard/admin/allocations", label: "Allocations" },
   ];
 
   return (
