@@ -1,50 +1,32 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { createContext, useContext, useState, useEffect } from "react";
+import type { User } from "../types";
 
-interface User {
-  name: string;
-  email: string;
-  role: 'Admin' | 'Accountant' | 'Resource Head' | 'Resource Team' | 'Founder';
-  token: string;
-}
-
-interface AuthContextProps {
+type AuthContextType = {
   user: User | null;
-  login: (email: string, password: string) => Promise<void>;
+  login: (user: User) => void;
   logout: () => void;
-}
+};
 
-const AuthContext = createContext<AuthContextProps | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const navigate = useNavigate();
 
+  const login = (u: User) => setUser(u);
+  const logout = () => setUser(null);
+
+  // ✅ Auto-login fake user in dev mode
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    if (import.meta.env.MODE === "development") {
+      setUser({
+        id: "demo-user",
+        name: "Demo Admin",
+        email: "demo@example.com",
+        role: "Founder", // ✅ Matches your Role union type
+        avatarUrl: "https://i.pravatar.cc/150?u=demo",
+      });
     }
   }, []);
-
-  const login = async (email: string, password: string) => {
-    try {
-      const response = await axios.post('/api/v1/auth/login', { email, password });
-      const userData = response.data;
-      setUser(userData);
-      localStorage.setItem('user', JSON.stringify(userData));
-      navigate('/dashboard');
-    } catch (error) {
-      console.error('Login failed:', error);
-    }
-  };
-
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('user');
-    navigate('/login');
-  };
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
@@ -54,7 +36,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error('useAuth must be used within AuthProvider');
-  return context;
+  const ctx = useContext(AuthContext);
+  if (!ctx) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return ctx;
 };

@@ -1,16 +1,12 @@
-// src/App.tsx
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+// App.tsx ✅ no Router here
 import { AuthProvider } from './context/AuthContext';
 import AppRoutes from './routes';
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
-    </Router>
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   );
 }
 
