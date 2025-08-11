@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import authRoutes from '../routes/auth.routes';
-import clientRoutes from '../routes/client.routes';
-import employeeRoutes from '../routes/employee.routes';
-import projectRoutes from '../routes/project.routes';
-import invoiceRoutes from '../routes/invoice.routes';
+import authRoutes from '../routes/auth.routes.js';
+import clientRoutes from '../routes/client.routes.js';
+import employeeRoutes from '../routes/employee.routes.js';
+import projectRoutes from '../routes/project.routes.js';
+import invoiceRoutes from '../routes/invoice.routes.js';
 
 const router = Router();
 

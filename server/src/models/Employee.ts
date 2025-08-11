@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { IEmployee } from '../types/employee.types';
+import { IEmployee } from '../types/employee.types.js';
 
 const employeeSchema = new Schema<IEmployee>(
   {

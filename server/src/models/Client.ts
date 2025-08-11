@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { IClient } from '../types/client.types';
+import { IClient } from '../types/client.types.js';
 
 const clientSchema = new Schema<IClient>(
   {

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { Client } from '../models/Client';
-import { IClient } from '../types/client.types';
+import { Client } from '../models/Client.js';
+import { IClient } from '../types/client.types.js';
 
 export const createClient = async (req: Request, res: Response) => {
   try {

@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { IInvoice } from '../types/invoice.types';
+import { IInvoice } from '../types/invoice.types.js';
 
 const invoiceSchema = new Schema<IInvoice>(
   {

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-// import bcrypt from 'bcryptjs';
-// import jwt from 'jsonwebtoken';
-import { User } from '../models/User';
-import { IUser } from '../types/user.types';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { User } from '../models/User.js';
+import { IUser } from '../types/user.types.js';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -22,7 +22,7 @@ export const register = async (req: Request, res: Response) => {
     //   role
     // });
 
-    res.status(201).json({ message: 'User registered successfully', user });
+    res.status(201).json({ message: 'User registered successfully', User });
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err });
   }

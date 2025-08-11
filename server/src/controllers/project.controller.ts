@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { Project } from '../models/Project';
-import { IProject } from '../types/project.types';
+import { Project } from '../models/Project.js';
+import { IProject } from '../types/project.types.js';
 
 export const createProject = async (req: Request, res: Response) => {
   try {
