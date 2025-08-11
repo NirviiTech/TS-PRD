@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Project } from '../models/project.model';
+import { Project } from '../models/Project';
 import { IProject } from '../types/project.types';
 
 export const createProject = async (req: Request, res: Response) => {

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Invoice } from '../models/invoice.model';
+import { Invoice } from '../models/Invoice';
 import { IInvoice } from '../types/invoice.types';
 
 export const createInvoice = async (req: Request, res: Response) => {

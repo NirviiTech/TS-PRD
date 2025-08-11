@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Employee } from '../models/employee.model';
+import { Employee } from '../models/Employee';
 import { IEmployee } from '../types/employee.types';
 
 export const createEmployee = async (req: Request, res: Response) => {
